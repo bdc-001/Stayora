@@ -20,6 +20,7 @@ import {
 import { SelectOptionLabel } from "../components/ui/select-option-label";
 import { SEARCH_PAGE_SORT_OPTIONS } from "../lib/select-option-maps";
 
+/** Search results page — hotel list from API (QA fixtures filtered server-side). */
 const Search = () => {
   const [urlSearchParams] = useSearchParams();
   const search = useSearchContext();
