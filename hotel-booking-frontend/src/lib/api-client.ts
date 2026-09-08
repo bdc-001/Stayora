@@ -1,17 +1,12 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 import Cookies from "js-cookie";
 
-// API origin: copy .env.local.example → .env.local. Canonical local backend port is 5001 (see backend PORT).
+// API origin: local `.env.local` or Vercel `VITE_API_BASE_URL` (build-time).
+// Prefer setting VITE_API_BASE_URL explicitly in production — see .env.vercel.example.
 const getBaseURL = () => {
-  if (import.meta.env.VITE_API_BASE_URL) {
-    return import.meta.env.VITE_API_BASE_URL;
-  }
-
-  if (
-    window.location.hostname === "mern-booking-hotel.netlify.app" ||
-    window.location.hostname.includes("vercel.app")
-  ) {
-    return "https://hotel-booking-backend.arnobmahmud.com";
+  const fromEnv = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "");
+  if (fromEnv) {
+    return fromEnv;
   }
 
   // Must match hotel-booking-backend PORT (default 5001) when VITE_API_BASE_URL is unset.
@@ -19,7 +14,7 @@ const getBaseURL = () => {
     return "http://localhost:5001";
   }
 
-  // Default to production (VPS backend)
+  // Hosted SPA without env: existing public demo API (override via Vercel env for Stayora).
   return "https://hotel-booking-backend.arnobmahmud.com";
 };
 

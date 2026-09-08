@@ -645,13 +645,15 @@ npm run build
 
 ---
 
-### Frontend Deployment (Netlify/Vercel)
+### Frontend Deployment (Vercel)
 
-- Config: `hotel-booking-frontend/vercel.json` (SPA rewrite → `index.html`)
-- Build: `npm run build` → `dist/`
-- Env in host dashboard:
-  - `VITE_API_BASE_URL` = production API origin
-  - `VITE_STRIPE_PUB_KEY` = live or test publishable key
+- Repo: [bdc-001/Stayora](https://github.com/bdc-001/Stayora) — root `vercel.json` builds `hotel-booking-frontend/`
+- Or set **Root Directory** to `hotel-booking-frontend` (uses that folder’s `vercel.json`)
+- SPA rewrite → `index.html`; env template: `hotel-booking-frontend/.env.vercel.example`
+- Env in Vercel → Settings → Environment Variables (Production):
+  - `VITE_API_BASE_URL` = production API origin (no trailing slash)
+  - `VITE_STRIPE_PUB_KEY` = Stripe publishable key (`pk_test_…` or `pk_live_…`)
+- After deploy: set backend `FRONTEND_URL` to the Vercel URL (CORS / OAuth)
 
 ```bash
 cd hotel-booking-frontend
