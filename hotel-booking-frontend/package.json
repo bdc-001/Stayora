@@ -56,9 +56,8 @@
     "vite": "^7.1.1"
   },
   "allowScripts": {
-    "esbuild": true,
     "esbuild@0.25.8": true,
-    "@swc/core": true,
-    "@swc/core@1.13.3": true
+    "@swc/core@1.13.3": true,
+    "fsevents@2.3.3": true
   }
 }

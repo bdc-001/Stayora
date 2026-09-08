@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "installCommand": "npm install --prefix hotel-booking-frontend",
-  "buildCommand": "npm run build --prefix hotel-booking-frontend",
+  "installCommand": "cd hotel-booking-frontend && npm install",
+  "buildCommand": "cd hotel-booking-frontend && npm run build",
   "outputDirectory": "hotel-booking-frontend/dist",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [

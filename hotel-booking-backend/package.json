@@ -53,9 +53,9 @@
     "supertest": "^7.2.2"
   },
   "allowScripts": {
-    "esbuild": true,
-    "esbuild@0.25.8": true,
-    "@swc/core": true,
-    "@swc/core@1.13.3": true
+    "@scarf/scarf@1.4.0": true,
+    "core-js@3.33.3": true,
+    "fsevents@2.3.3": true,
+    "mongodb-memory-server@11.2.0": true
   }
 }
