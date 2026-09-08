@@ -57,6 +57,8 @@
   },
   "allowScripts": {
     "esbuild": true,
-    "@swc/core": true
+    "esbuild@0.25.8": true,
+    "@swc/core": true,
+    "@swc/core@1.13.3": true
   }
 }
