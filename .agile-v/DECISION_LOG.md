@@ -110,3 +110,29 @@
 - **Decision:** Keep `/business-insights` public nav (showcase); denser dashboard KPIs from Booking/Review aggregates; insights invalidate once via hotel chain; nav prefetch; KPI value right / MoM left same row. No Next SSR/Redis/fake AI APIs.
 - **Rationale:** Demo transparency + RQ instant CRUD sync; Vite SPA shell + keepPreviousData.
 - **Resume:** `c1-t5-ai-auth-seed`
+
+## [C1] 2026-09-08T18:45:00Z | PRODUCT | REQ-0053_STAYORA_FIGTREE
+
+- **Decision:** Rebrand display name HolidayHotel → Stayora; replace Inter with self-hosted Figtree; shift primary palette blue → teal; brand-first hero copy; centralize strings in `lib/brand.ts`. Backend/product URLs unchanged.
+- **Rationale:** Explicit user ask to host FE + rebrand + Figtree design style; preserve JWT/RQ/PageContainer invariants.
+- **Linked REQ:** REQ-0053
+- **Resume:** `c1-t5-ai-auth-seed`
+
+## [C1] 2026-09-08T19:45:00Z | PRODUCT | REQ-0055_META_MUSE_LOCAL
+
+- **Decision:** Wire Meta Model API (`muse-spark-1.3-contributor` @ `https://api.meta.ai/v1`) into itinerary-agent via OpenAI Responses client; use `PromptedOutput` + `tool_choice=auto` (Meta rejects `required`); run agent on `:8001` because `:8000` was occupied; local Mongo replica set via Docker for trip transactions; Express `.env` gitignored.
+- **Rationale:** Backend was down without Mongo/env; default PydanticAI tool-forced structured output broke Meta Muse; user supplied Model API key for agentic flow.
+- **Linked REQ:** REQ-0055
+- **Evidence:** `POST /api/trips` → 201 with quoted hotel + activity/transport suggestions
+- **Resume:** `c1-t5-ai-auth-seed`
+
+## 2026-09-09 — REQ-0055
+Gate 1 approved in chat. Implement template-backed itinerary planning service, integrated Stayora UI, persistent revision approval, and hotel checkout. Supplier categories without adapters remain unbooked.
+
+## [C1] 2026-09-09T01:30:00Z | PRODUCT | PAYMENT_CURRENCY_INR
+
+- **Decision:** Switch display + Stripe PaymentIntents from GBP to INR. Major units = rupees on hotels/bookings; Stripe/trip item amounts = paise (₹ × 100). Seed nightly rates in INR; FE `formatMoney` uses `en-IN`.
+- **Rationale:** User requested pricing in rupees for India-subcontinent focus (CR vs prior GBP non-goal).
+- **Linked REQ:** REQ-0055 (ops), payments baseline
+- **Evidence:** `currency: "inr"` in hotels/trips routes; `hotel-booking-frontend/src/lib/currency.ts`
+- **Resume:** `c1-t5-ai-auth-seed`

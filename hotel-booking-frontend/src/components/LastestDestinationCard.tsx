@@ -4,6 +4,7 @@ import { MapPin, Star, Users } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { SafeImage } from "./ui/safe-image";
 
+import { formatMoney } from "../lib/currency";
 type Props = {
   hotel: HotelType;
 };
@@ -20,6 +21,9 @@ const LatestDestinationCard = ({ hotel }: Props) => {
           src={hotel.imageUrls[0]}
           alt={hotel.name}
           fill
+          fallbackSeed={hotel._id}
+          fallbackPlace={hotel.city}
+          fallbackTopic="hotel"
           className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
         />
 
@@ -39,7 +43,7 @@ const LatestDestinationCard = ({ hotel }: Props) => {
         {/* Price Badge */}
         <div className="absolute top-4 left-4">
           <div className="bg-primary-600 text-white rounded-full px-3 py-1">
-            <span className="text-sm font-medium">£{hotel.pricePerNight}</span>
+            <span className="text-sm font-medium">{formatMoney(hotel.pricePerNight)}</span>
           </div>
         </div>
       </div>

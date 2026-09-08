@@ -2,37 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Self-hosted Inter — avoids Google Fonts FOUT / third-party round-trip */
+/* Self-hosted Figtree — avoids Google Fonts FOUT / third-party round-trip */
 @font-face {
-  font-family: "Inter";
+  font-family: "Figtree";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/Inter-Regular.woff2") format("woff2");
+  src: url("/fonts/Figtree-Regular.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "Figtree";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("/fonts/Inter-Medium.woff2") format("woff2");
+  src: url("/fonts/Figtree-Medium.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "Figtree";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("/fonts/Inter-SemiBold.woff2") format("woff2");
+  src: url("/fonts/Figtree-SemiBold.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "Figtree";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/Inter-Bold.woff2") format("woff2");
+  src: url("/fonts/Figtree-Bold.woff2") format("woff2");
 }
 
 /* Always reserve vertical scrollbar so Select open/close does not hide the thumb.
@@ -87,31 +87,31 @@ html::-webkit-scrollbar-track {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 40 20% 98%;
+    --foreground: 200 25% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 200 25% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --popover-foreground: 200 25% 12%;
+    /* Teal ink — travel brand, not default AI purple/blue */
+    --primary: 173 58% 28%;
+    --primary-foreground: 160 40% 98%;
+    --secondary: 180 10% 96%;
+    --secondary-foreground: 200 25% 18%;
+    --muted: 180 10% 96%;
+    --muted-foreground: 200 10% 42%;
+    --accent: 173 30% 94%;
+    --accent-foreground: 173 58% 22%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 12% 88%;
+    --input: 180 12% 88%;
+    --ring: 173 58% 28%;
     --radius: 0.5rem;
   }
 
   /* Default body text; Header/Hero/Footer keep explicit text-white */
   body {
-    @apply text-gray-700;
+    @apply bg-[hsl(var(--background))] font-sans text-slate-700 antialiased;
   }
 }
-

@@ -7,12 +7,12 @@
 | Field | Value |
 |-------|-------|
 | **Cycle** | **C1** |
-| **Phase** | Stage 3–4 — Insights denser shipped |
-| **Status** | Insights KPIs/Quality/invalidate/prefetch · redeploy Vercel FE |
-| **Last REQ** | **REQ-0052** |
+| **Phase** | Stage 3–4 — India subcontinent focus |
+| **Status** | Pricing/Stripe INR · inventory + agent India-scoped · BE/agent/FE up |
+| **Last REQ** | **REQ-0055** |
 | **HEAD** | 14f6d07 on origin/main |
 | **Resume token** | `c1-t5-ai-auth-seed` |
-| **CHECKPOINTS** | INT-0001 PENDING (Gate 1) |
+| **CHECKPOINTS** | INT-0001 RESOLVED (Gate 1) |
 
 ## Shipped
 
@@ -28,4 +28,4 @@
 ## Next
 
 1. Redeploy Vercel FE
-2. Gate 1 (INT-0001)
+2. Implement and verify REQ-0055 itinerary assistant

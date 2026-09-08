@@ -1,2 +1,1 @@
-/** OFL — Inter by rsms; files in /public/fonts */
-export {};
+OFL — Figtree by Erik Kennedy / Google Fonts; self-hosted under /public/fonts

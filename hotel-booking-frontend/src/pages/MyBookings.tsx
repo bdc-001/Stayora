@@ -30,6 +30,7 @@ import useAppContext from "../hooks/useAppContext";
 import WriteReviewForm from "../components/WriteReviewForm";
 import CancelBookingButton from "../components/CancelBookingButton";
 
+import { formatMoney } from "../lib/currency";
 const MyBookings = () => {
   const { isLoggedIn } = useAppContext();
   const {
@@ -238,7 +239,7 @@ const MyBookings = () => {
           <div className="flex items-center gap-2">
             <DollarSign className="w-5 h-5" />
             <span className="text-blue-100">
-              £{totalSpent.toFixed(2)} Total Spent
+              {formatMoney(totalSpent)} Total Spent
             </span>
           </div>
         </div>
@@ -259,6 +260,9 @@ const MyBookings = () => {
                     alt={hotel.name}
                     width={96}
                     height={96}
+                    fallbackSeed={hotel._id}
+                    fallbackPlace={hotel.city}
+                    fallbackTopic="hotel"
                     className="w-24 h-24 rounded-xl object-cover object-center shadow-xl"
                   />
                   <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-medium px-2 py-1 rounded-full">
@@ -278,7 +282,7 @@ const MyBookings = () => {
                     </div>
                     <div className="flex items-center gap-1">
                       <Building className="w-4 h-4" />
-                      <span>£{hotel.pricePerNight}/night</span>
+                      <span>{formatMoney(hotel.pricePerNight)}/night</span>
                     </div>
                   </div>
                 </div>
@@ -431,14 +435,14 @@ const MyBookings = () => {
                                 Nights
                               </div>
                               <div className="text-lg font-medium text-green-600">
-                                £{totalPrice}
+                                {formatMoney(totalPrice)}
                               </div>
                               {/* Only show refund if it exists and is greater than 0 */}
                               {booking.refundAmount !== undefined &&
                                 booking.refundAmount !== null &&
                                 booking.refundAmount > 0 && (
                                   <div className="text-sm text-red-600">
-                                    Refund: £{booking.refundAmount}
+                                    Refund: {formatMoney(booking.refundAmount)}
                                   </div>
                                 )}
                             </div>

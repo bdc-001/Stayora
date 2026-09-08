@@ -6,6 +6,7 @@ import { Button } from "../../components/ui/button";
 import { Badge } from "../../components/ui/badge";
 import useAppContext from "../../hooks/useAppContext";
 
+import { formatMoney } from "../../lib/currency";
 const AdminDashboard = () => {
   const queryClient = useQueryClient();
   const { showToast } = useAppContext();
@@ -179,7 +180,7 @@ const AdminDashboard = () => {
             [
               "Revenue",
               overview?.totalRevenue != null
-                ? `£${Number(overview.totalRevenue).toLocaleString()}`
+                ? `${formatMoney(Number(overview.totalRevenue))}`
                 : "—",
             ],
           ].map(([label, value]) => (
@@ -239,7 +240,7 @@ const AdminDashboard = () => {
                   {s.metrics.totalBookings} bookings
                 </Badge>
                 <Badge variant="outline">
-                  £{Number(s.metrics.totalRevenue).toLocaleString()}
+                  {formatMoney(Number(s.metrics.totalRevenue))}
                 </Badge>
                 <Badge variant="outline">
                   cancel {s.metrics.cancellationRate}%

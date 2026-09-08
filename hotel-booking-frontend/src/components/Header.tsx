@@ -4,6 +4,7 @@ import MobileNav from "./MobileNav";
 import MainNav from "./MainNav";
 import PageContainer from "./PageContainer";
 import { Building2 } from "lucide-react";
+import { BRAND_NAME } from "../lib/brand";
 
 const Header = () => {
   const search = useSearchContext();
@@ -15,18 +16,19 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gradient-to-r from-primary-600 to-primary-700 shadow-large sticky top-0 z-50 h-[72px] flex items-center shrink-0">
+    <header className="bg-gradient-to-r from-primary-700 to-primary-800 shadow-large sticky top-0 z-50 h-[72px] flex items-center shrink-0">
       <PageContainer>
         <div className="flex justify-between items-center h-full">
           <button
             onClick={handleLogoClick}
-            className="flex items-center space-x-2 group"
+            className="flex items-center space-x-2.5 group"
+            aria-label={`${BRAND_NAME} home`}
           >
-            <div className="bg-white p-2 rounded-xl shadow-soft group-hover:shadow-medium transition-all duration-300">
-              <Building2 className="w-6 h-6 text-primary-600" />
+            <div className="bg-white/95 p-2 rounded-xl shadow-soft group-hover:shadow-medium transition-all duration-300">
+              <Building2 className="w-6 h-6 text-primary-700" />
             </div>
-            <span className="text-lg md:text-2xl font-medium text-white tracking-tight group-hover:text-primary-100 transition-colors">
-              HolidayHotel
+            <span className="text-xl md:text-2xl font-semibold text-white tracking-tight group-hover:text-primary-100 transition-colors">
+              {BRAND_NAME}
             </span>
           </button>
           <div className="md:hidden">

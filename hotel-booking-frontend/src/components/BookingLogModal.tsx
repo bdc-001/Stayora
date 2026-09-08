@@ -14,6 +14,7 @@ import {
 } from "./ui/select";
 import { SelectOptionLabel } from "./ui/select-option-label";
 import CancelBookingButton from "./CancelBookingButton";
+import { formatMoney } from "../lib/currency";
 import {
   Calendar,
   CalendarClock,
@@ -293,15 +294,15 @@ const BookingLogModal: React.FC<BookingLogModalProps> = ({
                       Total Revenue
                     </p>
                     <p className="text-lg md:text-2xl font-medium text-gray-700">
-                      £
-                      {bookings
-                        .filter((b: BookingType) => b.paymentStatus === "paid")
-                        .reduce(
-                          (sum: number, b: BookingType) =>
-                            sum + (b.totalCost || 0),
-                          0,
-                        )
-                        .toLocaleString()}
+                      {formatMoney(
+                        bookings
+                          .filter((b: BookingType) => b.paymentStatus === "paid")
+                          .reduce(
+                            (sum: number, b: BookingType) =>
+                              sum + (b.totalCost || 0),
+                            0,
+                          ),
+                      )}
                     </p>
                   </div>
                   <div className="bg-yellow-100 p-2 rounded-xl">
@@ -534,8 +535,7 @@ const BookingLogModal: React.FC<BookingLogModalProps> = ({
                                 <div className="flex items-center space-x-2 text-sm">
                                   <CreditCard className="w-4 h-4 text-gray-500" />
                                   <span className="text-gray-700">
-                                    Total: £
-                                    {booking.totalCost?.toLocaleString()}
+                                    Total: {formatMoney(booking.totalCost || 0)}
                                   </span>
                                 </div>
                                 {booking.refundAmount !== undefined &&
@@ -543,8 +543,8 @@ const BookingLogModal: React.FC<BookingLogModalProps> = ({
                                     <div className="flex items-center space-x-2 text-sm">
                                       <CreditCard className="w-4 h-4 text-red-500" />
                                       <span className="text-red-700">
-                                        Refunded: £
-                                        {booking.refundAmount.toLocaleString()}
+                                        Refunded:{" "}
+                                        {formatMoney(booking.refundAmount)}
                                       </span>
                                     </div>
                                   )}

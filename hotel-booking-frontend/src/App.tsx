@@ -19,6 +19,7 @@ import Detail from "./pages/Detail";
 import Booking from "./pages/Booking";
 import MyBookings from "./pages/MyBookings";
 import Home from "./pages/Home";
+import PlanTrip from "./pages/PlanTrip";
 import ApiDocs from "./pages/ApiDocs";
 import ApiStatus from "./pages/ApiStatus";
 import AnalyticsDashboard from "./pages/AnalyticsDashboard";
@@ -38,6 +39,7 @@ const App = () => {
     <Router>
       <ScrollToTop />
       <Routes>
+        <Route path="/plan-trip" element={<Layout><PlanTrip /></Layout>} />
         <Route
           path="/"
           element={

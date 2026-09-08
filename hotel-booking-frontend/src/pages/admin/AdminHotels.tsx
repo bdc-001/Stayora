@@ -10,6 +10,7 @@ import { DataTable } from "../../components/ui/data-table";
 import { invalidateAdminQueries } from "../../lib/invalidate-queries";
 import useAppContext from "../../hooks/useAppContext";
 
+import { formatMoney } from "../../lib/currency";
 const AdminHotels = () => {
   const queryClient = useQueryClient();
   const { showToast } = useAppContext();
@@ -57,7 +58,7 @@ const AdminHotels = () => {
       {
         accessorKey: "pricePerNight",
         header: "Price",
-        cell: ({ row }) => `£${row.original.pricePerNight}/night`,
+        cell: ({ row }) => `${formatMoney(row.original.pricePerNight)}/night`,
       },
       {
         accessorKey: "totalBookings",

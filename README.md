@@ -90,7 +90,7 @@ This repository is designed as a **teaching project**. By reading and running it
 - Search by destination, dates, guests, price, stars, types, facilities
 - Open hotel detail pages with images and amenities
 - Register / sign in (email+password or Google)
-- Book rooms with Stripe card payment (GBP)
+- Book rooms with Stripe card payment (INR)
 - View **My Bookings**
 
 ### For hotel owners
@@ -534,7 +534,7 @@ Detail → /hotel/:id/booking
    → /my-bookings
 ```
 
-Amount ≈ `pricePerNight × nights × 100` (pence). Use Stripe **test cards** in development.
+Amount ≈ `pricePerNight × nights × 100` (paise). Use Stripe **test cards** in development.
 
 ---
 

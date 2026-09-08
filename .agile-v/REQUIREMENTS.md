@@ -7,6 +7,14 @@
 
 ---
 
+## REQ-0055 — Human-approved itinerary booking agent
+
+- **Requirement:** Use the Vstorm full-stack AI agent template to build an itinerary assistant integrated with the existing Stayora website, accepting travel input and orchestrating reservations after explicit human approval.
+- **Constraint:** Preserve React/Vite and Express booking architecture; integrate a generated FastAPI agent service. Enforce server-side ownership, revision-bound approval, fresh supplier quotes, payment confirmation, and idempotent execution. Unsupported supplier categories remain explicitly unbooked.
+- **Verification Criteria:** Responsive planning/review/approval/progress UI, persistent drafts, authorization and stale-approval tests, duplicate-execution protection, partial-failure handling, backend/frontend builds, lint, and journey E2E coverage.
+- **Specification:** `docs/ITINERARY_AGENT_SPEC.md`.
+- **Status:** approved [C1]; implementation in progress, Gate 1 approved 2026-09-09.
+
 ## Traceability index
 
 | Range | Theme | Status |
@@ -41,6 +49,8 @@
 | REQ-0050 | Auth/TLS harden + SECURITY HTTPS note | done [C1] |
 | REQ-0051 | Full-field Mongoose seed | done [C1] |
 | REQ-0052 | Admin role PATCH + hotel isActive toggle | done [C1] |
+| REQ-0053 | Stayora rebrand + Figtree typography | done [C1] |
+| REQ-0054 | Generated place/travel images (faker + SafeImage) | done [C1] |
 
 ---
 
@@ -110,8 +120,8 @@
 
 ## REQ-0009 — Stripe PaymentIntent creation
 
-- **Requirement:** Authenticated user can create a PaymentIntent for a hotel stay (nights × pricePerNight, GBP).
-- **Constraint:** `POST /api/hotels/:hotelId/bookings/payment-intent`; requires JWT; amount in pence.
+- **Requirement:** Authenticated user can create a PaymentIntent for a hotel stay (nights × pricePerNight, INR).
+- **Constraint:** `POST /api/hotels/:hotelId/bookings/payment-intent`; requires JWT; amount in paise.
 - **Verification Criteria:** Returns `clientSecret`; unauthorized → 401.
 - **Done Criteria:** [x] Backend · [x] Booking page createPaymentIntent
 - **Status:** done [C1]
@@ -452,13 +462,29 @@
 - **Done Criteria:** [x] users/hotels/my-hotels routes · [x] AdminUsers · [x] AdminHotels · [x] api-client
 - **Status:** done [C1]
 
+## REQ-0053 — Stayora rebrand + Figtree
+
+- **Requirement:** Rebrand product display name from HolidayHotel to Stayora; self-host Figtree (replace Inter); teal primary palette; brand-first landing hero; update Header/Footer/Register/Admin/meta titles via `lib/brand.ts`.
+- **Constraint:** Preserve PageContainer, JWT auth, React Query keys, ports 5174/5001; no backend API rename.
+- **Verification Criteria:** Frontend `npm run lint` + `npm run build`; brand visible in header/hero/footer; Figtree loads from `/fonts/Figtree-*.woff2`.
+- **Done Criteria:** [x] brand.ts · [x] Figtree fonts · [x] Hero/Header/Footer · [x] index.html meta · [x] tailwind/index.css
+- **Status:** done [C1]
+
+## REQ-0054 — Generated place / travel images
+
+- **Requirement:** Hotel/place cards render photos when Cloudinary URLs fail or the hotels API is offline. Use `@faker-js/faker` to pick deterministic Unsplash images by place/topic (hotel, city, flight, resort, airport); Picsum as secondary fallback in SafeImage.
+- **Constraint:** No new paid API keys; preserve SafeImage API; Vite SPA only.
+- **Verification Criteria:** Home shows Popular Places with loaded images when API down; destination chips show thumbnails; `npx tsc --noEmit` clean.
+- **Done Criteria:** [x] `@faker-js/faker` · [x] `lib/generated-images.ts` · [x] SafeImage fallbacks · [x] FeaturedPlaceCard · [x] AdvancedSearch chips
+- **Status:** done [C1]
+
 ---
 
 ## Non-goals (C1)
 
 - Clerk auth migration (guide exists; stack remains JWT unless CR approved)
 - Python services
-- Changing payment currency away from GBP without CR
+- Changing payment currency away from INR without CR
 
 ---
 

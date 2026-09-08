@@ -25,6 +25,7 @@ import {
 import { useState } from "react";
 import { invalidateBookingQueries } from "../../lib/invalidate-queries";
 
+import { formatMoney } from "../../lib/currency";
 type Props = {
   currentUser: UserType;
   paymentIntent: PaymentIntentResponse;
@@ -254,7 +255,7 @@ MM/YY: 12/35 CVC: 123`;
               <div className="flex justify-between items-center mb-2">
                 <span className="text-gray-700 font-medium">Total Cost</span>
                 <span className="text-lg md:text-2xl font-medium text-blue-600">
-                  £{paymentIntent.totalCost.toFixed(2)}
+                  {formatMoney(Number(paymentIntent.totalCost))}
                 </span>
               </div>
               <div className="flex items-center gap-2 text-xs text-gray-500">

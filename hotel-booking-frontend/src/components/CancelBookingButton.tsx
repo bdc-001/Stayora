@@ -7,6 +7,7 @@ import type { BookingType } from "../../../shared/types";
 import { Button } from "./ui/button";
 import useAppContext from "../hooks/useAppContext";
 
+import { formatMoney } from "../lib/currency";
 type Props = {
   booking: BookingType;
   /** Extra class on the outer wrapper */
@@ -31,7 +32,7 @@ const CancelBookingButton = ({ booking, className }: Props) => {
         const skipNote = data.refundSkipped ? ` ${data.refundSkipped}` : "";
         const refundNote =
           data.refundAmount > 0
-            ? ` Refunded £${data.refundAmount.toFixed(2)}.`
+            ? ` Refunded ${formatMoney(Number(data.refundAmount))}.`
             : "";
         showToast({
           title: "Booking cancelled",

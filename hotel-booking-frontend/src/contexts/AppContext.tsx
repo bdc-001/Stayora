@@ -24,7 +24,7 @@ export const AppContext = React.createContext<AppContext | undefined>(
   undefined
 );
 
-const stripePromise = loadStripe(STRIPE_PUB_KEY);
+const stripePromise = STRIPE_PUB_KEY ? loadStripe(STRIPE_PUB_KEY) : Promise.resolve(null);
 
 /** Clear stale JWT keys so UI does not look logged-in after 401 */
 const clearAuthStorage = () => {

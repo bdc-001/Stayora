@@ -8,22 +8,23 @@
     "build": "tsc --skipLibCheck",
     "start": "node dist/hotel-booking-backend/src/index.js",
     "seed": "ts-node src/scripts/seed.ts",
-    "e2e": "cross-env DOTENV_CONFIG_PATH=.env.e2e nodemon"
+    "e2e": "cross-env DOTENV_CONFIG_PATH=.env.e2e nodemon",
+    "test:trips": "node --require ts-node/register --test --test-concurrency=1 tests/trips.test.cjs"
   },
   "author": "Arnob Mahmud",
   "license": "ISC",
   "dependencies": {
-    "@types/compression": "^1.8.1",
-    "@types/morgan": "^1.9.10",
-    "@types/swagger-jsdoc": "^6.0.4",
-    "@types/swagger-ui-express": "^4.1.8",
     "@types/bcryptjs": "^2.4.6",
+    "@types/compression": "^1.8.1",
     "@types/cookie-parser": "^1.4.6",
     "@types/cors": "^2.8.16",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.5",
+    "@types/morgan": "^1.9.10",
     "@types/multer": "^1.4.11",
     "@types/node": "^20.9.0",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.41.0",
     "compression": "^1.8.1",
@@ -46,5 +47,9 @@
     "swagger-ui-express": "^5.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.2.0",
+    "supertest": "^7.2.2"
   }
 }

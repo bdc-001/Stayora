@@ -37,7 +37,7 @@ const OPENROUTER_MODELS = [
 const systemPrompt = (kind: SuggestKind) =>
   kind === "insights_copy"
     ? "You write short hotel-business insight blurbs (2–3 sentences) for an admin dashboard. No markdown."
-    : "You polish hotel listing descriptions for a booking site. Keep 2–4 sentences, inviting, no markdown, GBP market tone.";
+    : "You polish hotel listing descriptions for a booking site. Keep 2–4 sentences, inviting, no markdown, INR market tone.";
 
 const userPrompt = (kind: SuggestKind, input: string) =>
   kind === "insights_copy"
@@ -78,7 +78,9 @@ const buildChain = (): ChatTarget[] => {
   if (process.env.OPENAI_API_KEY) {
     chain.push({
       provider: "openai",
-      baseUrl: "https://api.openai.com/v1",
+      baseUrl:
+        process.env.OPENAI_BASE_URL?.replace(/\/$/, "") ||
+        "https://api.openai.com/v1",
       apiKey: process.env.OPENAI_API_KEY,
       model: process.env.OPENAI_MODEL || "gpt-4o-mini",
     });

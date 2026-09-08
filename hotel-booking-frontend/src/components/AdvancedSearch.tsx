@@ -37,7 +37,6 @@ import {
 import { SEARCH_SORT_OPTIONS } from "../lib/select-option-maps";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
 import { Checkbox } from "./ui/checkbox";
 import {
   Select,
@@ -48,6 +47,8 @@ import {
 } from "./ui/select";
 import { SelectOptionLabel } from "./ui/select-option-label";
 import FilterSectionLabel from "./FilterSectionLabel";
+import { SafeImage } from "./ui/safe-image";
+import { FEATURED_PLACES } from "../lib/generated-images";
 
 interface AdvancedSearchProps {
   onSearch: (searchData: unknown) => void;
@@ -143,7 +144,7 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({
   const navigate = useNavigate();
   const search = useSearchContext();
   // Shared RQ + soft LS cache — invalidates on hotel CRUD via invalidateHotelQueries
-  const { places, isLoadingPlaces } = useHotelPlaces();
+  const { places } = useHotelPlaces();
   const [showAdvanced, setShowAdvanced] = useState(isExpanded);
   const [searchData, setSearchData] = useState({
     destination: search.destination,
@@ -641,35 +642,47 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({
         </div>
       )}
 
-      {/* Dynamic destinations from hotel cities */}
+      {/* Dynamic destinations from hotel cities (or generated featured places) */}
       <div className="border-t border-gray-200 pt-6">
         <FilterSectionLabel
           icon={MapPinHouse}
           title="Popular Destinations"
-          subtitle="Based on hotels in our catalog"
+          subtitle={
+            places.length > 0
+              ? "Based on hotels in our catalog"
+              : "Generated place imagery while the catalog loads"
+          }
         />
         <div className="flex flex-wrap gap-2">
-          {places.length === 0 ? (
-            <p className="text-sm text-gray-500">
-              {isLoadingPlaces
-                ? "Loading destinations…"
-                : "No destinations yet"}
-            </p>
-          ) : (
-            places.map((destination) => (
-              <button
-                key={destination}
-                type="button"
-                onClick={() => handleQuickSearch(destination)}
-              >
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 transition-colors px-3 py-1 text-sm"
+          {(places.length > 0 ? places : FEATURED_PLACES.map((p) => p.name)).map(
+            (destination) => {
+              const featured = FEATURED_PLACES.find(
+                (p) => p.name.toLowerCase() === destination.toLowerCase(),
+              );
+              return (
+                <button
+                  key={destination}
+                  type="button"
+                  onClick={() => handleQuickSearch(destination)}
+                  className="group relative overflow-hidden rounded-xl border border-gray-200 hover:border-primary-300 transition-colors"
                 >
-                  {destination}
-                </Badge>
-              </button>
-            ))
+                  <span className="flex items-center gap-2 pr-3">
+                    <SafeImage
+                      alt={destination}
+                      width={40}
+                      height={40}
+                      fallbackSeed={`chip-${destination}`}
+                      fallbackPlace={destination}
+                      fallbackTopic={featured?.topic ?? "city"}
+                      className="h-10 w-10 object-cover"
+                    />
+                    <span className="text-sm font-medium text-gray-700 group-hover:text-primary-700">
+                      {destination}
+                    </span>
+                  </span>
+                </button>
+              );
+            },
           )}
         </div>
       </div>

@@ -122,7 +122,7 @@ flowchart TB
 | Backend  | Node.js, Express, TypeScript, Mongoose, JWT, bcrypt, multer, Swagger                                         |
 | Data     | MongoDB                                                                                                      |
 | Media    | Cloudinary                                                                                                   |
-| Payments | Stripe PaymentIntents (GBP)                                                                                  |
+| Payments | Stripe PaymentIntents (INR)                                                                                  |
 | Auth     | JWT + Google OAuth 2.0                                                                                       |
 | Deploy   | Vercel (frontend), Docker/Coolify (backend)                                                                  |
 
@@ -274,7 +274,7 @@ Bookings live in a **separate collection** (not embedded in `Hotel`).
 ### 5.7 Stripe flow (`routes/hotels.ts`)
 
 1. **PaymentIntent:** `POST /api/hotels/:hotelId/bookings/payment-intent`  
-   Amount = `pricePerNight × nights × 100` (pence), `currency: gbp`, metadata `{ hotelId, userId }`.
+   Amount = `pricePerNight × nights × 100` (paise), `currency: inr`, metadata `{ hotelId, userId }`.
 2. **Confirm booking:** `POST /api/hotels/:hotelId/bookings`  
    Retrieves PaymentIntent; requires `status === "succeeded"`; creates `Booking`; updates hotel/user totals.
 
@@ -666,3 +666,7 @@ Shared
 ---
 
 _Last aligned: ports **5001**/**5174**, JWT localStorage, API **arnobmahmud.com**, T1–T5 + post-T5 polish (SafeImage, Inter fonts, Vercel guardrails)._
+
+## Itinerary concierge (REQ-0055, 2026-09-09)
+
+`/plan-trip` integrates a generated Vstorm FastAPI/PydanticAI service with the React website through authenticated `/api/trips` routes. Mongo Trip documents persist conversations, approval revisions, quotes and per-stay reservations. Separate Stripe intents and transactional confirmation support recovery without duplicate bookings. Flights/activities/transfers remain explicitly unbooked suggestions until supplier adapters are connected. See `../itinerary-agent/README.md` for setup, capabilities, limits and verification.

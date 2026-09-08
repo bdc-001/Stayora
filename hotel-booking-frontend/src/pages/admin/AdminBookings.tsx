@@ -7,6 +7,7 @@ import { Badge } from "../../components/ui/badge";
 import { DataTable } from "../../components/ui/data-table";
 import CancelBookingButton from "../../components/CancelBookingButton";
 
+import { formatMoney } from "../../lib/currency";
 const statusClass = (status?: string) => {
   switch (status) {
     case "confirmed":
@@ -70,7 +71,7 @@ const AdminBookings = () => {
         accessorKey: "totalCost",
         header: "Total",
         cell: ({ row }) =>
-          `£${row.original.totalCost?.toLocaleString() ?? 0}`,
+          `${formatMoney(row.original.totalCost ?? 0)}`,
       },
       {
         id: "actions",

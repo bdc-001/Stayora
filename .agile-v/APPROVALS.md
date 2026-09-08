@@ -19,3 +19,9 @@ _No gate approvals yet._
 - **resume_token:** …
 - **INTERRUPT-ID:** INT-XXXX
 -->
+
+### Gate 1 — 2026-09-09
+- Decision: Approved by user chat attestation: “Do it make the project superb and agentic”.
+- Scope: baseline Gate 1 and REQ-0055 itinerary agent specification.
+- resume_token: c1-gate1-baseline-blueprint
+- INTERRUPT-ID: INT-0001

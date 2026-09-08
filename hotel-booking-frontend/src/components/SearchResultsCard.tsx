@@ -18,6 +18,7 @@ import {
 import { Badge } from "./ui/badge";
 import { SafeImage } from "./ui/safe-image";
 
+import { formatMoney } from "../lib/currency";
 type Props = {
   hotel: HotelType;
 };
@@ -47,6 +48,9 @@ const SearchResultsCard = ({ hotel }: Props) => {
             src={hotel.imageUrls[0]}
             alt={hotel.name}
             fill
+            fallbackSeed={hotel._id}
+            fallbackPlace={hotel.city}
+            fallbackTopic="hotel"
             className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
 
@@ -54,7 +58,7 @@ const SearchResultsCard = ({ hotel }: Props) => {
           <div className="absolute top-4 left-4 flex flex-col space-y-2">
             <div className="bg-primary-600 text-white rounded-full px-3 py-1">
               <span className="text-sm font-medium">
-                £{hotel.pricePerNight}
+                {formatMoney(hotel.pricePerNight)}
               </span>
             </div>
             {hotel.isFeatured && (

@@ -7,7 +7,8 @@ import {
 } from "./ui/select";
 import { SelectOptionLabel } from "./ui/select-option-label";
 import FilterSectionLabel from "./FilterSectionLabel";
-import { CircleDashed, DollarSign, PoundSterling } from "lucide-react";
+import { CircleDashed, IndianRupee } from "lucide-react";
+import { formatMoney } from "../lib/currency";
 
 type Props = {
   selectedPrice?: number;
@@ -17,7 +18,7 @@ type Props = {
 const PriceFilter = ({ selectedPrice, onChange }: Props) => {
   return (
     <div>
-      <FilterSectionLabel icon={DollarSign} title="Max Price" />
+      <FilterSectionLabel icon={IndianRupee} title="Max Price" />
       <Select
         value={selectedPrice != null ? String(selectedPrice) : "any"}
         onValueChange={(v) =>
@@ -36,10 +37,10 @@ const PriceFilter = ({ selectedPrice, onChange }: Props) => {
               Any
             </SelectOptionLabel>
           </SelectItem>
-          {[50, 100, 200, 300, 500].map((price) => (
+          {[5000, 8000, 10000, 15000, 20000, 30000].map((price) => (
             <SelectItem key={price} value={String(price)}>
-              <SelectOptionLabel icon={PoundSterling}>
-                £{price}
+              <SelectOptionLabel icon={IndianRupee}>
+                {formatMoney(price)}
               </SelectOptionLabel>
             </SelectItem>
           ))}

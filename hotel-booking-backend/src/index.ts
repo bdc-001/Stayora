@@ -16,6 +16,7 @@ import businessInsightsRoutes from "./routes/business-insights";
 import reviewRoutes from "./routes/reviews";
 import analyticsRoutes from "./routes/analytics";
 import aiRoutes from "./routes/ai";
+import tripRoutes from "./routes/trips";
 import swaggerUi from "swagger-ui-express";
 import { specs } from "./swagger";
 import helmet from "helmet";
@@ -239,6 +240,7 @@ app.use("/api/reviews", reviewRoutes);
 // Rollups (former /api/analytics/snapshots) — same router, blocker-safe path under business-insights
 app.use("/api/business-insights", analyticsRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/trips", tripRoutes);
 
 // Swagger API Documentation
 app.use(

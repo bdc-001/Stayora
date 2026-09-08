@@ -16,6 +16,7 @@ import {
 import { Badge } from "../components/ui/badge";
 import { Loader2, CreditCard, Calendar, Users } from "lucide-react";
 
+import { formatMoney } from "../lib/currency";
 const Booking = () => {
   const { stripePromise } = useAppContext();
   const search = useSearchContext();
@@ -144,7 +145,7 @@ const Booking = () => {
                     {hotel.starRating} Stars
                   </Badge>
                   <Badge variant="outline" className="text-xs">
-                    £{hotel.pricePerNight}/night
+                    {formatMoney(hotel.pricePerNight)}/night
                   </Badge>
                 </div>
                 {hotel.type && hotel.type.length > 0 && (

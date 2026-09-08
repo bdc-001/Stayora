@@ -74,7 +74,7 @@ On pause: append `CHECKPOINTS.md` with `resume_token`; resume only from `STATE.m
 | API client | `lib/api-client.ts` Axios + `api-client.ts` named functions |
 | Cache | React Query; invalidate/refetch `validateToken` on auth transitions |
 | Search | `SearchContext` → `sessionStorage`; filters via query params |
-| Payments | Stripe PaymentIntent GBP → confirm booking only if `succeeded` |
+| Payments | Stripe PaymentIntent INR → confirm booking only if `succeeded` |
 | Owner media | Multer memory → Cloudinary → `imageUrls[]` (max 6) |
 | UI | Existing Tailwind + shadcn; preserve `Layout` / `AuthLayout` |
 | Types | Prefer `shared/types.ts` for cross-package contracts |

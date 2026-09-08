@@ -16,6 +16,7 @@ const MobileNavLinks = () => {
 
   return (
     <div className="flex flex-col gap-1">
+      <Link to="/plan-trip" className={linkClass}>✧ Plan my trip</Link>
       <Link to={getHotelsSearchUrl()} className={linkClass}>
         <Hotel className="h-4 w-4" />
         Hotels

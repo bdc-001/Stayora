@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import * as apiClient from "../../api-client";
 import type { BookingType, ReviewType } from "../../../../shared/types";
 
+import { formatMoney } from "../../lib/currency";
 type ActivityItem = {
   id: string;
   at: number;
@@ -27,7 +28,7 @@ const AdminActivity = () => {
       at: new Date(b.createdAt || b.checkIn).getTime(),
       kind: "booking",
       title: `Booking ${b.status || "pending"} — ${b.firstName} ${b.lastName}`,
-      detail: `£${b.totalCost} · check-in ${new Date(b.checkIn).toLocaleDateString()}`,
+      detail: `${formatMoney(b.totalCost)} · check-in ${new Date(b.checkIn).toLocaleDateString()}`,
     });
   });
   (reviews as ReviewType[] | undefined)?.forEach((r) => {

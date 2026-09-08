@@ -16,6 +16,7 @@ import {
 import { Badge } from "../../components/ui/badge";
 import { Calendar, Users, User, Baby, CreditCard } from "lucide-react";
 
+import { formatMoney } from "../../lib/currency";
 type Props = {
   hotelId: string;
   pricePerNight: number;
@@ -150,7 +151,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
               <span>Booking Summary</span>
             </div>
             <Badge variant="outline" className="text-sm">
-              £{pricePerNight}/night
+              {formatMoney(pricePerNight)}/night
             </Badge>
           </CardTitle>
         </CardHeader>
@@ -160,13 +161,13 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
           <div className="flex justify-between items-center p-4 bg-white rounded-xl border border-gray-100 shadow-xl">
             <div className="flex items-center gap-2">
               <span className="text-gray-600">
-                £{pricePerNight} × {numberOfNights} night
+                {formatMoney(pricePerNight)} × {numberOfNights} night
                 {numberOfNights > 1 ? "s" : ""}
               </span>
             </div>
             <div className="text-right">
               <div className="text-lg md:text-2xl font-medium text-blue-600">
-                £{totalPrice}
+                {formatMoney(totalPrice)}
               </div>
               <div className="text-xs text-gray-500">Total Price</div>
             </div>

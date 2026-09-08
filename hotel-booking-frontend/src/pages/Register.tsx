@@ -4,6 +4,7 @@ import { useMutationWithLoading } from "../hooks/useLoadingHooks";
 import * as apiClient from "../api-client";
 import useAppContext from "../hooks/useAppContext";
 import { welcomeNewToast } from "../lib/toast-messages";
+import { BRAND_NAME } from "../lib/brand";
 import { StaggerItem } from "../components/ui/stagger";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -90,7 +91,7 @@ const Register = () => {
             <StaggerItem index={1}>
               <CardHeader className="space-y-0 text-center relative z-10 pb-6">
                 <CardTitle className="text-lg md:text-2xl font-medium text-gray-700">
-                  Join HolidayHotel
+                  Join {BRAND_NAME}
                 </CardTitle>
                 <CardDescription className="mt-0 text-gray-600">
                   Create your account to start booking

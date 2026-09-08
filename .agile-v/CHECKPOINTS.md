@@ -5,3 +5,5 @@
 | INT-0001 | C1 | Human-Decision | PENDING | c1-gate1-baseline-blueprint | — | Approve baseline REQUIREMENTS.md Blueprint (REQ-0001…0032) before Stage 3 synthesis |
 
 <!-- On resolve: append new row Status=RESOLVED + matching APPROVALS.md with same resume_token -->
+
+| INT-0001 | C1 | Human-Decision | RESOLVED | c1-gate1-baseline-blueprint | 2026-09-09 | User approved Gate 1 and REQ-0055 in chat |

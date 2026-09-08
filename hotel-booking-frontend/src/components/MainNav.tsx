@@ -30,6 +30,7 @@ const MainNav = () => {
 
   return (
     <nav className="flex items-center gap-1 lg:gap-2">
+      <Link to="/plan-trip" className={navLinkClass}>✧ Plan my trip</Link>
       <Link to={getHotelsSearchUrl()} className={navLinkClass}>
         Hotels
       </Link>

@@ -9,6 +9,7 @@ import {
   Linkedin,
 } from "lucide-react";
 import PageContainer from "./PageContainer";
+import { BRAND_NAME, BRAND_SUPPORT_EMAIL, BRAND_TAGLINE } from "../lib/brand";
 
 const Footer = () => {
   return (
@@ -19,15 +20,15 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="bg-white p-2 rounded-xl">
-                <Building2 className="w-6 h-6 text-primary-600" />
+                <Building2 className="w-6 h-6 text-primary-700" />
               </div>
-              <span className="text-lg md:text-2xl font-medium">
-                HolidayHotel
+              <span className="text-lg md:text-2xl font-semibold tracking-tight">
+                {BRAND_NAME}
               </span>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              Discover amazing hotels, resorts, and accommodations worldwide.
-              Book with confidence and enjoy unforgettable experiences.
+            <p className="text-teal-100/80 leading-relaxed">
+              {BRAND_TAGLINE} Discover hotels and resorts worldwide, then book
+              with confidence.
             </p>
             <div className="flex space-x-4">
               <a
@@ -157,7 +158,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-primary-300" />
-                <span className="text-gray-300">support@HolidayHotel.com</span>
+                <span className="text-gray-300">{BRAND_SUPPORT_EMAIL}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-primary-300" />

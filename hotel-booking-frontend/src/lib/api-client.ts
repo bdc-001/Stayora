@@ -15,7 +15,7 @@ const getBaseURL = () => {
   }
 
   // Must match hotel-booking-backend PORT (default 5001) when VITE_API_BASE_URL is unset.
-  if (window.location.hostname === "localhost") {
+  if (["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname)) {
     return "http://localhost:5001";
   }
 
@@ -37,7 +37,7 @@ const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
   withCredentials: true, // Ensure cookies are sent with requests
-  timeout: 30000, // 30 second timeout
+  timeout: 5000, // fail fast when API is down so generative place images can render
 });
 
 // Request interceptor to add Authorization header with JWT token

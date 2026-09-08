@@ -6,6 +6,7 @@ import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
 import { Badge } from "../components/ui/badge";
 import { SafeImage } from "../components/ui/safe-image";
 import type { ReviewType } from "../../../shared/types";
+import { formatMoney } from "../lib/currency";
 import {
   MapPin,
   Phone,
@@ -116,7 +117,7 @@ const Detail = () => {
             )}
             {hotel.totalRevenue && hotel.totalRevenue > 0 && (
               <Badge variant="outline">
-                £{hotel.totalRevenue.toLocaleString()} revenue
+                {formatMoney(hotel.totalRevenue)} revenue
               </Badge>
             )}
             {/* Rating Badge */}
@@ -156,6 +157,9 @@ const Detail = () => {
                 src={image}
                 alt={hotel.name}
                 fill
+                fallbackSeed={`${hotel._id}-${i}`}
+                fallbackPlace={hotel.city}
+                fallbackTopic="hotel"
                 className="rounded-xl object-cover object-center"
               />
             </div>
@@ -167,7 +171,7 @@ const Detail = () => {
           <div className="flex items-center gap-6">
             <div className="text-center">
               <p className="text-sm md:text-lg font-medium text-gray-700">
-                £{hotel.pricePerNight}
+                {formatMoney(hotel.pricePerNight)}
               </p>
               <p className="text-sm text-gray-600">per night</p>
             </div>

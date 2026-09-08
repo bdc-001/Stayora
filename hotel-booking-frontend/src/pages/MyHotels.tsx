@@ -32,6 +32,7 @@ import { useState } from "react";
 import useAppContext from "../hooks/useAppContext";
 import { invalidateHotelQueries } from "../lib/invalidate-queries";
 
+import { formatMoney } from "../lib/currency";
 const MyHotels = () => {
   const { isLoggedIn, showToast } = useAppContext();
   const queryClient = useQueryClient();
@@ -243,10 +244,12 @@ const MyHotels = () => {
             <div>
               <p className="text-sm font-medium text-gray-600">Total Revenue</p>
               <p className="text-sm md:text-lg font-medium text-gray-700">
-                £
-                {hotelData
-                  .reduce((sum, hotel) => sum + (hotel.totalRevenue || 0), 0)
-                  .toLocaleString()}
+                {formatMoney(
+                  hotelData.reduce(
+                    (sum, hotel) => sum + (hotel.totalRevenue || 0),
+                    0,
+                  ),
+                )}
               </p>
             </div>
             <div className="bg-yellow-100 p-3 rounded-xl">
@@ -291,6 +294,9 @@ const MyHotels = () => {
                 src={hotel.imageUrls[0]}
                 alt={hotel.name}
                 fill
+                fallbackSeed={hotel._id}
+                fallbackPlace={hotel.city}
+                fallbackTopic="hotel"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -298,7 +304,7 @@ const MyHotels = () => {
               {/* Badges */}
               <div className="absolute top-4 left-4 flex flex-col space-y-2">
                 <Badge className="bg-primary-600 text-white">
-                  £{hotel.pricePerNight}/night
+                  {formatMoney(hotel.pricePerNight)}/night
                 </Badge>
                 <Badge
                   className={
@@ -371,7 +377,7 @@ const MyHotels = () => {
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <BiMoney className="w-4 h-4 text-primary-600" />
-                  <span>£{hotel.pricePerNight} per night</span>
+                  <span>{formatMoney(hotel.pricePerNight)} per night</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <BiHotel className="w-4 h-4 text-primary-600" />

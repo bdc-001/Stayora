@@ -8,6 +8,7 @@ import {
   Activity,
   ArrowLeft,
 } from "lucide-react";
+import { BRAND_NAME } from "../lib/brand";
 
 const nav = [
   { to: "/admin", end: true, label: "Dashboard", icon: LayoutDashboard },
@@ -27,7 +28,7 @@ const AdminLayout = () => {
           <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
             Admin
           </p>
-          <p className="font-medium text-slate-900">Hotel Booking</p>
+          <p className="font-medium text-slate-900">{BRAND_NAME} Admin</p>
         </div>
         <nav className="flex-1 p-2 space-y-0.5">
           {nav.map(({ to, end, label, icon: Icon }) => (
