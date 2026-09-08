@@ -16,11 +16,17 @@ import Booking from "../models/booking";
 import Review from "../models/review";
 import Analytics from "../models/analytics";
 
-const IMG = [
-  "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
-  "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800",
-  "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-];
+/** Distinct real Unsplash hotel/destination photos (no placeholders) */
+const u = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&q=80`;
+
+const HOTEL_PHOTOS = {
+  delhi: [u("1566073771259-6a8506099945"), u("1582719508461-905c673771fd")],
+  goa: [u("1520250497591-112f2f40a3f4"), u("1507525428034-b723cf961d3e")],
+  bengaluru: [u("1551882547-ff40c63fe5fa"), u("1571896349842-33c89424de2d")],
+  jaipur: [u("1548013146-72479768bada"), u("1524492412937-b28074a5d7da")],
+  colombo: [u("1537996194471-e657df975ab4"), u("1552733407-5d5c46c3bb3b")],
+};
 
 const daysFromNow = (n: number) => {
   const d = new Date();
@@ -153,7 +159,7 @@ async function seed() {
     facilities: ["Free WiFi", "Parking", "Spa", "Restaurant"],
     pricePerNight: 12000,
     starRating: 5,
-    imageUrls: [IMG[0], IMG[1]],
+    imageUrls: HOTEL_PHOTOS.delhi,
     lastUpdated: new Date(),
     location: {
       latitude: 28.5916,
@@ -211,7 +217,7 @@ async function seed() {
     facilities: ["Free WiFi", "Family Rooms", "Swimming Pool", "Restaurant"],
     pricePerNight: 9000,
     starRating: 4,
-    imageUrls: [IMG[2], IMG[0]],
+    imageUrls: HOTEL_PHOTOS.goa,
     lastUpdated: new Date(),
     location: {
       latitude: 15.5573,
@@ -269,7 +275,7 @@ async function seed() {
     facilities: ["Free WiFi", "Parking", "Airport Shuttle", "Kitchenette"],
     pricePerNight: 8500,
     starRating: 4,
-    imageUrls: [IMG[1], IMG[2]],
+    imageUrls: HOTEL_PHOTOS.bengaluru,
     lastUpdated: new Date(),
     location: {
       latitude: 12.9784,
@@ -327,7 +333,7 @@ async function seed() {
     facilities: ["Free WiFi", "Restaurant", "Rooftop", "Parking"],
     pricePerNight: 7500,
     starRating: 4,
-    imageUrls: [IMG[0], IMG[2]],
+    imageUrls: HOTEL_PHOTOS.jaipur,
     lastUpdated: new Date(),
     location: {
       latitude: 26.9239,
@@ -385,7 +391,7 @@ async function seed() {
     facilities: ["Free WiFi", "Restaurant", "Sea View", "Spa"],
     pricePerNight: 11000,
     starRating: 5,
-    imageUrls: [IMG[2], IMG[1]],
+    imageUrls: HOTEL_PHOTOS.colombo,
     lastUpdated: new Date(),
     location: {
       latitude: 6.9271,

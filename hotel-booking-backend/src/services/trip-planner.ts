@@ -79,7 +79,12 @@ export async function planTrip(messages: { role: string; content: string }[]) {
     throw new Error(
       "Trip planning is not configured yet. Set up the itinerary agent service to start planning.",
     );
-  const hotels = await Hotel.find({ isActive: { $ne: false } })
+  const hotels = await Hotel.find({
+    isActive: { $ne: false },
+    "imageUrls.0": { $exists: true, $ne: "" },
+    name: { $not: /qa\b|qa hotel|test hotel|dublin getaways/i },
+    description: { $not: /lorem ipsum/i },
+  })
     .select(
       "_id name city country pricePerNight adultCount childCount facilities",
     )

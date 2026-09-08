@@ -19,6 +19,7 @@ import {
 } from "../components/ui/select";
 import { SelectOptionLabel } from "../components/ui/select-option-label";
 import { SEARCH_PAGE_SORT_OPTIONS } from "../lib/select-option-maps";
+import { isProductHotel } from "../lib/product-hotels";
 
 const Search = () => {
   const [urlSearchParams] = useSearchParams();

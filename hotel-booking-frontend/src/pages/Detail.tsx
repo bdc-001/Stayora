@@ -157,9 +157,6 @@ const Detail = () => {
                 src={image}
                 alt={hotel.name}
                 fill
-                fallbackSeed={`${hotel._id}-${i}`}
-                fallbackPlace={hotel.city}
-                fallbackTopic="hotel"
                 className="rounded-xl object-cover object-center"
               />
             </div>

@@ -12,9 +12,19 @@ const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
 const router = express.Router();
 
+/** Public catalog: real photos only — hide QA / lorem fixture listings */
+const PRODUCT_LISTING_FILTER = {
+  "imageUrls.0": { $exists: true, $ne: "" },
+  name: { $not: /qa\b|qa hotel|test hotel|dublin getaways/i },
+  description: { $not: /lorem ipsum/i },
+};
+
 router.get("/search", async (req: Request, res: Response) => {
   try {
-    const query = constructSearchQuery(req.query);
+    const query = {
+      ...constructSearchQuery(req.query),
+      ...PRODUCT_LISTING_FILTER,
+    };
 
     let sortOptions = {};
     switch (req.query.sortOption) {
@@ -60,7 +70,7 @@ router.get("/search", async (req: Request, res: Response) => {
 
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const hotels = await Hotel.find().sort("-lastUpdated");
+    const hotels = await Hotel.find(PRODUCT_LISTING_FILTER).sort("-lastUpdated");
     res.json(hotels);
   } catch (error) {
     console.log("error", error);

@@ -260,9 +260,6 @@ const MyBookings = () => {
                     alt={hotel.name}
                     width={96}
                     height={96}
-                    fallbackSeed={hotel._id}
-                    fallbackPlace={hotel.city}
-                    fallbackTopic="hotel"
                     className="w-24 h-24 rounded-xl object-cover object-center shadow-xl"
                   />
                   <div className="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-medium px-2 py-1 rounded-full">

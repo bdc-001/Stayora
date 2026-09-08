@@ -48,7 +48,7 @@ import {
 import { SelectOptionLabel } from "./ui/select-option-label";
 import FilterSectionLabel from "./FilterSectionLabel";
 import { SafeImage } from "./ui/safe-image";
-import { FEATURED_PLACES } from "../lib/generated-images";
+import { placePhotoUrl } from "../lib/place-photos";
 
 interface AdvancedSearchProps {
   onSearch: (searchData: unknown) => void;
@@ -642,7 +642,7 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({
         </div>
       )}
 
-      {/* Dynamic destinations from hotel cities (or generated featured places) */}
+      {/* Destinations from live hotel catalog only */}
       <div className="border-t border-gray-200 pt-6">
         <FilterSectionLabel
           icon={MapPinHouse}
@@ -650,41 +650,36 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({
           subtitle={
             places.length > 0
               ? "Based on hotels in our catalog"
-              : "Generated place imagery while the catalog loads"
+              : "Destinations appear when stays are listed"
           }
         />
-        <div className="flex flex-wrap gap-2">
-          {(places.length > 0 ? places : FEATURED_PLACES.map((p) => p.name)).map(
-            (destination) => {
-              const featured = FEATURED_PLACES.find(
-                (p) => p.name.toLowerCase() === destination.toLowerCase(),
-              );
-              return (
-                <button
-                  key={destination}
-                  type="button"
-                  onClick={() => handleQuickSearch(destination)}
-                  className="group relative overflow-hidden rounded-xl border border-gray-200 hover:border-primary-300 transition-colors"
-                >
-                  <span className="flex items-center gap-2 pr-3">
-                    <SafeImage
-                      alt={destination}
-                      width={40}
-                      height={40}
-                      fallbackSeed={`chip-${destination}`}
-                      fallbackPlace={destination}
-                      fallbackTopic={featured?.topic ?? "city"}
-                      className="h-10 w-10 object-cover"
-                    />
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-primary-700">
-                      {destination}
-                    </span>
+        {places.length > 0 ? (
+          <div className="flex flex-wrap gap-2">
+            {places.map((destination) => (
+              <button
+                key={destination}
+                type="button"
+                onClick={() => handleQuickSearch(destination)}
+                className="group relative overflow-hidden rounded-xl border border-gray-200 hover:border-primary-300 transition-colors"
+              >
+                <span className="flex items-center gap-2 pr-3">
+                  <SafeImage
+                    src={placePhotoUrl(destination, { width: 80 })}
+                    alt={destination}
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 object-cover"
+                  />
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-primary-700">
+                    {destination}
                   </span>
-                </button>
-              );
-            },
-          )}
-        </div>
+                </span>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-gray-500">No destinations yet.</p>
+        )}
       </div>
     </div>
   );

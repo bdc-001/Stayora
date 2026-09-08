@@ -48,9 +48,6 @@ const SearchResultsCard = ({ hotel }: Props) => {
             src={hotel.imageUrls[0]}
             alt={hotel.name}
             fill
-            fallbackSeed={hotel._id}
-            fallbackPlace={hotel.city}
-            fallbackTopic="hotel"
             className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
 
